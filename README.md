@@ -1,5 +1,7 @@
 # YallaFitfusionLifestyle-App
 
+[![Live Demo](https://img.shields.io/badge/View-Live%20Demo-brightgreen)](https://smariamd.github.io/YallaFitfusionLifestyle-App/)
+
 A comprehensive fitness application designed to make your fitness journey accessible and engaging for everyone, with special attention to accessibility features.
 
 ## 🚀 Features
