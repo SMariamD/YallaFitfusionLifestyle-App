@@ -183,6 +183,30 @@
             transform: scale(1.05);
         }
 
+        .feature-item img {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+            max-height: 300px;
+            object-fit: cover;
+            background: #404040;
+            display: block;
+        }
+
+        .feature-item img:not([src]), .feature-item img[src=""] {
+            background: #404040;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+        }
+
+        .feature-item img:not([src])::before, .feature-item img[src=""]::before {
+            content: "Image not available";
+        }
+
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -339,6 +363,19 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #404040;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -384,12 +421,12 @@
 
         <!-- Navigation -->
         <div class="navigation">
-            <button class="nav-btn active" onclick="showSection('overview')">📋 Overview</button>
-            <button class="nav-btn" onclick="showSection('research')">🔍 Research</button>
-            <button class="nav-btn" onclick="showSection('design')">🎨 Design Process</button>
-            <button class="nav-btn" onclick="showSection('features')">⚡ AI Features</button>
-            <button class="nav-btn" onclick="showSection('evaluation')">📊 User Testing</button>
-            <button class="nav-btn" onclick="showSection('results')">🏆 Results</button>
+            <button class="nav-btn active" data-section="overview">📋 Overview</button>
+            <button class="nav-btn" data-section="research">🔍 Research</button>
+            <button class="nav-btn" data-section="design">🎨 Design Process</button>
+            <button class="nav-btn" data-section="features">⚡ AI Features</button>
+            <button class="nav-btn" data-section="evaluation">📊 User Testing</button>
+            <button class="nav-btn" data-section="results">🏆 Results</button>
         </div>
 
         <!-- Overview Section -->
@@ -464,9 +501,9 @@
             <div class="interactive-demo">
                 <h3>🎯 Key Research Insights</h3>
                 <p>Our research revealed critical gaps in current fitness solutions that informed our AI-powered approach.</p>
-                <button class="demo-btn" onclick="alert('85% of users abandon fitness apps within 6 months due to lack of personalization')">Retention Challenge</button>
-                <button class="demo-btn" onclick="alert('73% wanted AI-powered form correction and real-time feedback')">AI Opportunity</button>
-                <button class="demo-btn" onclick="alert('67% struggled with finding appropriate exercises for their fitness level')">Personalization Gap</button>
+                <button class="demo-btn" onclick="showInsight('retention')">Retention Challenge</button>
+                <button class="demo-btn" onclick="showInsight('ai')">AI Opportunity</button>
+                <button class="demo-btn" onclick="showInsight('personalization')">Personalization Gap</button>
             </div>
         </div>
 
@@ -497,45 +534,45 @@
                 </div>
             </div>
 
-            <!-- APP DESIGN SHOWCASE - ALL YOUR SCREENSHOTS -->
+            <!-- APP DESIGN SHOWCASE -->
             <div style="margin-top: 50px;">
                 <h3 style="text-align: center; margin-bottom: 30px; color: #ffffff;">📱 App Design Showcase</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="feature-list">
                     <div class="feature-item">
                         <h3>🏠 Welcome Page</h3>
-                        <img src="welcome page.PNG" alt="Welcome Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Welcome Page Design</div>
                     </div>
                     <div class="feature-item">
                         <h3>📝 Sign Up Page</h3>
-                        <img src="sing up page 1 normal.PNG" alt="Sign Up Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Sign Up Page Design</div>
                     </div>
                     <div class="feature-item">
                         <h3>👤 Profile Page</h3>
-                        <img src="profile page.PNG" alt="Profile Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Profile Page Design</div>
                     </div>
                     <div class="feature-item">
                         <h3>🏆 Challenges Page</h3>
-                        <img src="challenges page.PNG" alt="Challenges Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Challenges Page Design</div>
                     </div>
                     <div class="feature-item">
                         <h3>🤖 AI Chat Assistance</h3>
-                        <img src="Ai chat assistance.PNG" alt="AI Chat Assistance" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">AI Chat Assistance</div>
                     </div>
                     <div class="feature-item">
                         <h3>🎵 Real-time Audio</h3>
-                        <img src="real time audio during workout.PNG" alt="Real-time Audio Feature" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Real-time Audio Feature</div>
                     </div>
                     <div class="feature-item">
                         <h3>👥 Friends Invite</h3>
-                        <img src="friends invite.PNG" alt="Friends Invite Feature" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Friends Invite Feature</div>
                     </div>
                     <div class="feature-item">
                         <h3>🍽️ Meal Prep Challenge</h3>
-                        <img src="meal prep challenge with workout.PNG" alt="Meal Prep Challenge" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Meal Prep Challenge</div>
                     </div>
                     <div class="feature-item">
                         <h3>📊 Progress Indicators</h3>
-                        <img src="progress indicators.PNG" alt="Progress Indicators" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Progress Indicators</div>
                     </div>
                 </div>
             </div>
@@ -543,34 +580,34 @@
             <!-- ACCESSIBILITY FEATURES -->
             <div style="margin-top: 40px;">
                 <h3 style="text-align: center; margin-bottom: 30px; color: #ffffff;">♿ Accessibility & Special Features</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="feature-list">
                     <div class="feature-item">
                         <h3>♿ Accessibility Features</h3>
-                        <img src="accessibility features.PNG" alt="Accessibility Features" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Accessibility Features</div>
                     </div>
                     <div class="feature-item">
                         <h3>🎨 Color & Visual Design</h3>
-                        <img src="colour and visual,motion sensory.PNG" alt="Color and Visual Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Color and Visual Design</div>
                     </div>
                     <div class="feature-item">
                         <h3>📖 Dyslexia Support</h3>
-                        <img src="dyslexia.PNG" alt="Dyslexia Support Features" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Dyslexia Support Features</div>
                     </div>
                     <div class="feature-item">
                         <h3>🎯 User-Centric Challenges</h3>
-                        <img src="user centric challenges.PNG" alt="User Centric Challenges" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">User Centric Challenges</div>
                     </div>
                     <div class="feature-item">
                         <h3>🏋️ Push-up Challenge</h3>
-                        <img src="push up challenge updated.PNG" alt="Push-up Challenge" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Push-up Challenge</div>
                     </div>
                     <div class="feature-item">
                         <h3>📅 Daily Progress</h3>
-                        <img src="daily 2.PNG" alt="Daily Progress Tracking" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Daily Progress Tracking</div>
                     </div>
                     <div class="feature-item">
                         <h3>🔊 Real-time Audio Assistance</h3>
-                        <img src="real time audio assistance during workouts.PNG" alt="Real-time Audio Assistance" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <div class="image-placeholder">Real-time Audio Assistance</div>
                     </div>
                 </div>
             </div>
@@ -578,40 +615,9 @@
             <div class="interactive-demo">
                 <h3>🛠️ Design Artifacts</h3>
                 <p>Explore our comprehensive design documentation and prototypes</p>
-                <button class="demo-btn" onclick="alert('Storyboards: 12 detailed scenarios covering diverse user personas and contexts')">View Storyboards</button>
-                <button class="demo-btn" onclick="alert('Wireframes: 25+ screens with detailed annotations and user flow documentation')">Explore Wireframes</button>
-                <button class="demo-btn" onclick="alert('Prototype: Interactive Figma prototype with 40+ connected screens and animations')">Try Prototype</button>
-            </div>
-            
-            <div class="process-grid">
-                <div class="process-card">
-                    <div class="process-icon">📚</div>
-                    <h3>Storyboarding</h3>
-                    <p>Created detailed user journey storyboards mapping the complete fitness experience from onboarding to achievement celebration.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon">📐</div>
-                    <h3>Wireframing</h3>
-                    <p>Developed low-fidelity wireframes focusing on information architecture and user flow optimization.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon">🎯</div>
-                    <h3>Interactive Prototyping</h3>
-                    <p>Built high-fidelity, interactive prototypes in Figma with realistic AI feature demonstrations and micro-interactions.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon">🔄</div>
-                    <h3>Iterative Refinement</h3>
-                    <p>Continuously refined designs based on user feedback and usability testing insights throughout the design process.</p>
-                </div>
-            </div>
-
-            <div class="interactive-demo">
-                <h3>🛠️ Design Artifacts</h3>
-                <p>Explore our comprehensive design documentation and prototypes</p>
-                <button class="demo-btn" onclick="alert('Storyboards: 12 detailed scenarios covering diverse user personas and contexts')">View Storyboards</button>
-                <button class="demo-btn" onclick="alert('Wireframes: 25+ screens with detailed annotations and user flow documentation')">Explore Wireframes</button>
-                <button class="demo-btn" onclick="alert('Prototype: Interactive Figma prototype with 40+ connected screens and animations')">Try Prototype</button>
+                <button class="demo-btn" onclick="showArtifact('storyboards')">View Storyboards</button>
+                <button class="demo-btn" onclick="showArtifact('wireframes')">Explore Wireframes</button>
+                <button class="demo-btn" onclick="showArtifact('prototype')">Try Prototype</button>
             </div>
         </div>
 
@@ -649,9 +655,9 @@
             <div class="interactive-demo">
                 <h3>🚀 AI Innovation Highlights</h3>
                 <p>Our AI features address real user needs identified through research</p>
-                <button class="demo-btn" onclick="alert('Form Analysis: 94% accuracy in detecting common exercise mistakes')">Technical Performance</button>
-                <button class="demo-btn" onclick="alert('Personalization: 300% improvement in user engagement vs generic apps')">User Impact</button>
-                <button class="demo-btn" onclick="alert('Coach AI: Natural language processing with fitness domain expertise')">Conversational AI</button>
+                <button class="demo-btn" onclick="showTechnical('performance')">Technical Performance</button>
+                <button class="demo-btn" onclick="showTechnical('impact')">User Impact</button>
+                <button class="demo-btn" onclick="showTechnical('coach')">Conversational AI</button>
             </div>
         </div>
 
@@ -707,9 +713,9 @@
             <div class="interactive-demo">
                 <h3>🔍 Testing Methodology</h3>
                 <p>Mixed-methods approach ensuring comprehensive user experience evaluation</p>
-                <button class="demo-btn" onclick="alert('Qualitative: Rich insights into user motivations, frustrations, and mental models')">Qualitative Insights</button>
-                <button class="demo-btn" onclick="alert('Quantitative: Statistical validation of usability improvements and feature effectiveness')">Performance Metrics</button>
-                <button class="demo-btn" onclick="alert('Validation: 89% of users completed primary tasks successfully on first attempt')">Success Rates</button>
+                <button class="demo-btn" onclick="showMethodology('qualitative')">Qualitative Insights</button>
+                <button class="demo-btn" onclick="showMethodology('quantitative')">Performance Metrics</button>
+                <button class="demo-btn" onclick="showMethodology('validation')">Success Rates</button>
             </div>
         </div>
 
@@ -765,9 +771,9 @@
             <div class="interactive-demo">
                 <h3>📈 Project Impact</h3>
                 <p>Demonstrated the effectiveness of user-centered design in creating AI-powered fitness solutions</p>
-                <button class="demo-btn" onclick="alert('User Engagement: 300% higher retention compared to traditional fitness apps')">Engagement Impact</button>
-                <button class="demo-btn" onclick="alert('Design Process: Methodology now used as template for future AI-UX projects')">Methodology Impact</button>
-                <button class="demo-btn" onclick="alert('Research Contribution: Insights published in UX design conference proceedings')">Academic Impact</button>
+                <button class="demo-btn" onclick="showImpact('engagement')">Engagement Impact</button>
+                <button class="demo-btn" onclick="showImpact('methodology')">Methodology Impact</button>
+                <button class="demo-btn" onclick="showImpact('academic')">Academic Impact</button>
             </div>
         </div>
 
@@ -777,13 +783,14 @@
             <p style="font-size: 1.3rem; margin-bottom: 30px;">
                 Dive deeper into our research, design process, and findings
             </p>
-            <a href="#" class="cta-btn" onclick="alert('Link to Figma prototype would go here')">🎨 View Figma Prototype</a>
-            <a href="#" class="cta-btn" onclick="alert('Link to research documentation would go here')">📚 Read Research Report</a>
-            <a href="#" class="cta-btn" onclick="alert('Link to GitHub repository would go here')">💻 GitHub Repository</a>
+            <a href="#" class="cta-btn" onclick="showProject('figma')">🎨 View Figma Prototype</a>
+            <a href="#" class="cta-btn" onclick="showProject('research')">📚 Read Research Report</a>
+            <a href="#" class="cta-btn" onclick="showProject('github')">💻 GitHub Repository</a>
         </div>
     </div>
 
     <script>
+        // Navigation functionality
         function showSection(sectionId) {
             // Hide all sections
             const sections = document.querySelectorAll('.section');
@@ -798,29 +805,100 @@
             });
 
             // Show selected section
-            document.getElementById(sectionId).classList.add('active');
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
 
             // Add active class to clicked button
-            event.target.classList.add('active');
+            const activeBtn = document.querySelector(`[data-section="${sectionId}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
 
             // Smooth scroll to top of section
-            document.getElementById(sectionId).scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
 
-        // Add some interactive animations on load
-        window.addEventListener('load', function() {
+        // Enhanced alert functions for different content types
+        function showInsight(type) {
+            const insights = {
+                retention: '85% of users abandon fitness apps within 6 months due to lack of personalization',
+                ai: '73% wanted AI-powered form correction and real-time feedback',
+                personalization: '67% struggled with finding appropriate exercises for their fitness level'
+            };
+            alert(insights[type] || 'Insight not found');
+        }
+
+        function showArtifact(type) {
+            const artifacts = {
+                storyboards: 'Storyboards: 12 detailed scenarios covering diverse user personas and contexts',
+                wireframes: 'Wireframes: 25+ screens with detailed annotations and user flow documentation',
+                prototype: 'Prototype: Interactive Figma prototype with 40+ connected screens and animations'
+            };
+            alert(artifacts[type] || 'Artifact not found');
+        }
+
+        function showTechnical(type) {
+            const technical = {
+                performance: 'Form Analysis: 94% accuracy in detecting common exercise mistakes',
+                impact: 'Personalization: 300% improvement in user engagement vs generic apps',
+                coach: 'Coach AI: Natural language processing with fitness domain expertise'
+            };
+            alert(technical[type] || 'Technical info not found');
+        }
+
+        function showMethodology(type) {
+            const methodology = {
+                qualitative: 'Qualitative: Rich insights into user motivations, frustrations, and mental models',
+                quantitative: 'Quantitative: Statistical validation of usability improvements and feature effectiveness',
+                validation: 'Validation: 89% of users completed primary tasks successfully on first attempt'
+            };
+            alert(methodology[type] || 'Methodology info not found');
+        }
+
+        function showImpact(type) {
+            const impact = {
+                engagement: 'User Engagement: 300% higher retention compared to traditional fitness apps',
+                methodology: 'Design Process: Methodology now used as template for future AI-UX projects',
+                academic: 'Research Contribution: Insights published in UX design conference proceedings'
+            };
+            alert(impact[type] || 'Impact info not found');
+        }
+
+        function showProject(type) {
+            const projects = {
+                figma: 'Link to Figma prototype would go here',
+                research: 'Link to research documentation would go here',
+                github: 'Link to GitHub repository would go here'
+            };
+            alert(projects[type] || 'Project link not found');
+        }
+
+        // Event listeners for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event listeners to navigation buttons
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+
+            // Add animations on load
             const cards = document.querySelectorAll('.process-card, .feature-item, .metric-card');
             cards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
                 card.style.animation = 'fadeInUp 0.6s ease-out forwards';
             });
-        });
 
-        // Add hover effects for demo buttons
-        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects for demo buttons
             const demoBtns = document.querySelectorAll('.demo-btn');
             demoBtns.forEach(btn => {
                 btn.addEventListener('mouseenter', function() {
