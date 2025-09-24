@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lifestyle Fitness App - UX Research & Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -384,12 +387,12 @@
 
         <!-- Navigation -->
         <div class="navigation">
-            <button class="nav-btn active" onclick="showSection('overview')">📋 Overview</button>
-            <button class="nav-btn" onclick="showSection('research')">🔍 Research</button>
-            <button class="nav-btn" onclick="showSection('design')">🎨 Design Process</button>
-            <button class="nav-btn" onclick="showSection('features')">⚡ AI Features</button>
-            <button class="nav-btn" onclick="showSection('evaluation')">📊 User Testing</button>
-            <button class="nav-btn" onclick="showSection('results')">🏆 Results</button>
+            <button class="nav-btn active" onclick="showSection('overview', event)">📋 Overview</button>
+            <button class="nav-btn" onclick="showSection('research', event)">🔍 Research</button>
+            <button class="nav-btn" onclick="showSection('design', event)">🎨 Design Process</button>
+            <button class="nav-btn" onclick="showSection('features', event)">⚡ AI Features</button>
+            <button class="nav-btn" onclick="showSection('evaluation', event)">📊 User Testing</button>
+            <button class="nav-btn" onclick="showSection('results', event)">🏆 Results</button>
         </div>
 
         <!-- Overview Section -->
@@ -583,36 +586,6 @@
                 <button class="demo-btn" onclick="alert('Prototype: Interactive Figma prototype with 40+ connected screens and animations')">Try Prototype</button>
             </div>
             
-            <div class="process-grid">
-                <div class="process-card">
-                    <div class="process-icon">📚</div>
-                    <h3>Storyboarding</h3>
-                    <p>Created detailed user journey storyboards mapping the complete fitness experience from onboarding to achievement celebration.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon">📐</div>
-                    <h3>Wireframing</h3>
-                    <p>Developed low-fidelity wireframes focusing on information architecture and user flow optimization.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon">🎯</div>
-                    <h3>Interactive Prototyping</h3>
-                    <p>Built high-fidelity, interactive prototypes in Figma with realistic AI feature demonstrations and micro-interactions.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon">🔄</div>
-                    <h3>Iterative Refinement</h3>
-                    <p>Continuously refined designs based on user feedback and usability testing insights throughout the design process.</p>
-                </div>
-            </div>
-
-            <div class="interactive-demo">
-                <h3>🛠️ Design Artifacts</h3>
-                <p>Explore our comprehensive design documentation and prototypes</p>
-                <button class="demo-btn" onclick="alert('Storyboards: 12 detailed scenarios covering diverse user personas and contexts')">View Storyboards</button>
-                <button class="demo-btn" onclick="alert('Wireframes: 25+ screens with detailed annotations and user flow documentation')">Explore Wireframes</button>
-                <button class="demo-btn" onclick="alert('Prototype: Interactive Figma prototype with 40+ connected screens and animations')">Try Prototype</button>
-            </div>
         </div>
 
         <!-- AI Features Section -->
@@ -784,7 +757,7 @@
     </div>
 
     <script>
-        function showSection(sectionId) {
+        function showSection(sectionId, event) {
             // Hide all sections
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
@@ -801,7 +774,9 @@
             document.getElementById(sectionId).classList.add('active');
 
             // Add active class to clicked button
-            event.target.classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
 
             // Smooth scroll to top of section
             document.getElementById(sectionId).scrollIntoView({
