@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lifestyle Fitness App - UX Research & Design</title>
     <style>
+        :root {
+            --primary-bg: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            --card-bg: linear-gradient(135deg, #404040 0%, #1a1a1a 100%);
+            --metric-bg: #3a3a3a;
+            --text-primary: #f0f0f0;
+            --text-secondary: rgba(255, 255, 255, 0.9);
+            --border-light: rgba(255, 255, 255, 0.1);
+            --white: #ffffff;
+            --accent: #667eea;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,8 +26,8 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #f0f0f0;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: var(--text-primary);
+            background: var(--primary-bg);
             min-height: 100vh;
         }
 
@@ -25,29 +37,40 @@
             padding: 20px;
         }
 
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
+        .hero, .section, .interactive-demo, .cta-section {
             background: rgba(45, 45, 45, 0.3);
             backdrop-filter: blur(10px);
             border-radius: 20px;
+            border: 1px solid var(--border-light);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
             margin-bottom: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            color: white;
+            color: var(--white);
             margin-bottom: 20px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
+        .hero p, .section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+        
         .hero p {
             font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto 30px;
+            margin-bottom: 30px;
         }
 
         .badges {
@@ -57,14 +80,23 @@
             flex-wrap: wrap;
         }
 
-        .badge {
+        .badge, .tech-item {
             padding: 8px 16px;
             background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--border-light);
             border-radius: 25px;
-            color: white;
+            color: var(--white);
             font-weight: 500;
             backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+        
+        .badge {
+            display: inline-block;
+        }
+        
+        .tech-item {
+            padding: 10px 20px;
         }
 
         .navigation {
@@ -75,33 +107,42 @@
             flex-wrap: wrap;
         }
 
-        .nav-btn {
+        .btn {
             padding: 12px 24px;
-            background: white;
             border: none;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            color: #667eea;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .nav-btn, .demo-btn, .cta-btn {
+            background: var(--white);
+            color: var(--accent);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .nav-btn:hover, .nav-btn.active {
+        .nav-btn:hover, .nav-btn.active,
+        .demo-btn:hover, .cta-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            background: #667eea;
-            color: white;
+            background: var(--accent);
+            color: var(--white);
+        }
+        
+        .cta-btn {
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            margin: 20px 10px 0;
+            text-decoration: none;
         }
 
         .section {
             display: none;
             background: #2a2a2a;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .section.active {
@@ -149,10 +190,10 @@
             box-shadow: 0 15px 35px rgba(255, 255, 255, 0.1);
         }
 
-        .process-icon {
+        .icon-circle {
             width: 80px;
             height: 80px;
-            background: #ffffff;
+            background: var(--white);
             color: #1a1a1a;
             border-radius: 50%;
             display: flex;
@@ -160,6 +201,10 @@
             justify-content: center;
             margin: 0 auto 20px;
             font-size: 2rem;
+        }
+        
+        .process-icon {
+            composes: icon-circle;
         }
 
         .feature-list {
@@ -339,13 +384,19 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
+        @media (max-width: 992px) {
+            .process-grid, .feature-list, .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1.2rem;
+            .hero p, .section p {
+                font-size: 1.1rem;
             }
             
             .timeline::before {
@@ -364,6 +415,21 @@
             
             .timeline-marker {
                 left: 20px;
+            }
+            
+            .hero, .section, .interactive-demo, .cta-section {
+                padding: 30px 20px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                margin: 5px 0;
             }
         }
     </style>
@@ -503,39 +569,39 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                     <div class="feature-item">
                         <h3>🏠 Welcome Page</h3>
-                        <img src="welcome page.PNG" alt="Welcome Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/welcome page.PNG" alt="Welcome Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>📝 Sign Up Page</h3>
-                        <img src="sing up page 1 normal.PNG" alt="Sign Up Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/sing up page 1 normal.PNG" alt="Sign Up Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>👤 Profile Page</h3>
-                        <img src="profile page.PNG" alt="Profile Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/profile page.PNG" alt="Profile Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>🏆 Challenges Page</h3>
-                        <img src="challenges page.PNG" alt="Challenges Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/challenges page.PNG" alt="Challenges Page Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>🤖 AI Chat Assistance</h3>
-                        <img src="Ai chat assistance.PNG" alt="AI Chat Assistance" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/Ai chat assistance.PNG" alt="AI Chat Assistance" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>🎵 Real-time Audio</h3>
-                        <img src="real time audio during workout.PNG" alt="Real-time Audio Feature" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/real time audio during workout.PNG" alt="Real-time Audio Feature" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>👥 Friends Invite</h3>
-                        <img src="friends invite.PNG" alt="Friends Invite Feature" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/friends invite.PNG" alt="Friends Invite Feature" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>🍽️ Meal Prep Challenge</h3>
-                        <img src="meal prep challenge with workout.PNG" alt="Meal Prep Challenge" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/meal prep challenge with workout.PNG" alt="Meal Prep Challenge" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>📊 Progress Indicators</h3>
-                        <img src="progress indicators.PNG" alt="Progress Indicators" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/progress indicators.PNG" alt="Progress Indicators" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                 </div>
             </div>
@@ -546,31 +612,31 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                     <div class="feature-item">
                         <h3>♿ Accessibility Features</h3>
-                        <img src="accessibility features.PNG" alt="Accessibility Features" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/accessibility features.PNG" alt="Accessibility Features" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>🎨 Color & Visual Design</h3>
-                        <img src="colour and visual,motion sensory.PNG" alt="Color and Visual Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/colour and visual,motion sensory.PNG" alt="Color and Visual Design" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>📖 Dyslexia Support</h3>
-                        <img src="dyslexia.PNG" alt="Dyslexia Support Features" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/dyslexia.PNG" alt="Dyslexia Support Features" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>🎯 User-Centric Challenges</h3>
-                        <img src="user centric challenges.PNG" alt="User Centric Challenges" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/user centric challenges.PNG" alt="User Centric Challenges" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>🏋️ Push-up Challenge</h3>
-                        <img src="push up challenge updated.PNG" alt="Push-up Challenge" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/push up challenge updated.PNG" alt="Push-up Challenge" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>📅 Daily Progress</h3>
-                        <img src="daily 2.PNG" alt="Daily Progress Tracking" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/daily 2.PNG" alt="Daily Progress Tracking" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                     <div class="feature-item">
                         <h3>🔊 Real-time Audio Assistance</h3>
-                        <img src="real time audio assistance during workouts.PNG" alt="Real-time Audio Assistance" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+                        <img src="images/real time audio assistance during workouts.PNG" alt="Real-time Audio Assistance" style="width: 100%; border-radius: 10px; margin-top: 15px;">
                     </div>
                 </div>
             </div>
